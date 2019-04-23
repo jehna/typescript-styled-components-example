@@ -8,7 +8,21 @@ export const MyStyledComponent = styled.div`
 
 export const MyComponent = () => <div>Hello world</div>
 
-export const ThemedComponent = styled.div`
+export interface MyTheme {
+  main: string
+}
+export interface MyThemeProps {
+  theme?: MyTheme
+}
+
+// This injects the correct theme to props
+// https://stackoverflow.com/a/55413440
+declare module 'styled-components' {
+  /* tslint:disable */
+  export interface DefaultTheme extends MyTheme {}
+}
+
+export const ThemedComponent = styled.div<MyThemeProps>`
   color: ${props => props.theme.main};
   border: 2px solid ${props => props.theme.main};
 `
