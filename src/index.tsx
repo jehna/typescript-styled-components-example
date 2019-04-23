@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 
 export const MyStyledComponent = styled.div`
   color: red;
@@ -7,3 +7,11 @@ export const MyStyledComponent = styled.div`
 `
 
 export const MyComponent = () => <div>Hello world</div>
+
+export const ThemedComponent = styled.div`
+  color: ${props => props.theme.main};
+  border: 2px solid ${props => props.theme.main};
+`
+ThemedComponent.defaultProps = { theme: { main: 'palevioletred' } }
+
+export const CustomThemeProvider = ThemeProvider
